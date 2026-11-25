@@ -22,6 +22,11 @@ Isliye app 2 mode me kaam karta hai:
 Offline (bina API key): Hindi, Marathi, Bengali, Gujarati, Tamil, Telugu, Kannada, Urdu, English.
 Baaki bhashaon ke liye: https://www.sarvam.ai se free API key lekar app Settings me daalein.
 
+## 📲 Seedha download (phone me)
+**https://github.com/vaidyaashwanikumar666-cyber/LiveCallTranslator/releases/latest/download/LiveCallTranslator.apk**
+
+Link kholte hi APK download hoga → Open → Install ("Unknown apps" allow karein).
+
 ## 📦 APK kaise banayein
 **Option A – GitHub (PC ki zaroorat nahi):**
 1. GitHub par naya repo banayein aur yeh folder upload/push karein.

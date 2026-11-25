@@ -68,7 +68,7 @@ class CallActivity : AppCompatActivity(), Listener.Callback, CallClient.Events {
             }
             val msg = "📞 Live Call Translator par mere saath baat karo – main ${my.name} bolunga, " +
                 "aap apni bhasha me suno!\n\nRoom code: $room\n\n" +
-                "App: https://github.com/vaidyaashwanikumar666-cyber/LiveCallTranslator/actions"
+                "App download: https://github.com/vaidyaashwanikumar666-cyber/LiveCallTranslator/releases/latest/download/LiveCallTranslator.apk"
             startActivity(Intent.createChooser(
                 Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, msg),
                 "Invite bhejo"
