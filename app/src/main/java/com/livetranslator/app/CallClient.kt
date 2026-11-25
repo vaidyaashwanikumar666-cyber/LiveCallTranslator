@@ -22,7 +22,11 @@ class CallClient(private val events: Events) {
     }
 
     private val main = Handler(Looper.getMainLooper())
-    private val http = OkHttpClient.Builder().pingInterval(20, TimeUnit.SECONDS).build()
+    private val http = OkHttpClient.Builder()
+        .pingInterval(20, TimeUnit.SECONDS)
+        .connectTimeout(90, TimeUnit.SECONDS)   // free server so jaata hai, jaagne me ~1 min
+        .readTimeout(0, TimeUnit.MILLISECONDS)
+        .build()
     private var ws: WebSocket? = null
     private var closedByUser = false
 

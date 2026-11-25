@@ -30,18 +30,22 @@ Baaki bhashaon ke liye: https://www.sarvam.ai se free API key lekar app Settings
 
 **Option B – Android Studio:** folder open karein → ▶ Run.
 
-## ☁️ Relay server (sirf App-to-App mode ke liye)
-`server/` folder ko free me **Render.com** par deploy karein:
-- New → Web Service → repo choose karein → Root directory: `server`
-- Build command: `npm install` · Start command: `npm start`
-- Milne wala URL, jaise `https://abc.onrender.com`, app Settings me **`wss://abc.onrender.com`** likhein.
+## ☁️ Relay server (sirf App-to-App mode ke liye) – 1 click setup
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/vaidyaashwanikumar666-cyber/LiveCallTranslator)
+
+1. Upar wala button dabayein → **GitHub se Sign in** karein (free, card nahi chahiye).
+2. **Apply / Deploy Blueprint** dabayein. 2-3 minute me server live.
+3. Agar URL `https://livecalltranslator-relay.onrender.com` hai to app me kuch nahi badalna – woh default hai.
+   Alag URL mile to app Settings me "Call server URL" me woh daal dein.
+
+Note: free server 15 min khaali rehne par so jaata hai; pehla connect ~1 minute le sakta hai, uske baad turant.
 
 Local test: `cd server && npm install && npm start` → phone me `ws://<PC-ka-IP>:8080`.
 
 ## 📱 Use kaise karein
 1. App kholein → Meri bhasha: Hindi, Saamne wale ki: Marathi.
 2. "Offline language pack download" dabayein (ek baar, Wi-Fi par).
-3. Mode chunein. App-to-App me dono log same room code (jaise `4321`) daal kar Join karein.
+3. App-to-App: **🎲 Naya code** → **📤 Invite bhejo** (WhatsApp par code jayega) → Join. Dost bhi wahi code daal kar Join kare.
 4. Earphones lagayein to echo kam hoga.
 
 Tips: Awaaz na aaye to Phone Settings → Text-to-speech → Google → bhasha ka voice data install karein.

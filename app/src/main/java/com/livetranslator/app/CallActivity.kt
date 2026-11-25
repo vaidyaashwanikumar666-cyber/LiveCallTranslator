@@ -1,5 +1,6 @@
 package com.livetranslator.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -53,8 +54,25 @@ class CallActivity : AppCompatActivity(), Listener.Callback, CallClient.Events {
         findViewById<Button>(R.id.btnJoin).setOnClickListener {
             val room = etRoom.text.toString().trim()
             if (room.length < 3) { etRoom.error = "Kam se kam 3 digit"; return@setOnClickListener }
-            tvStatus.text = "Connect ho raha hai…"
+            tvStatus.text = "Connect ho raha hai… (pehli baar 1 minute tak lag sakta hai)"
             client.connect(Prefs.server(this), room, Prefs.name(this), my)
+        }
+        findViewById<Button>(R.id.btnNewCode).setOnClickListener {
+            etRoom.setText((100000..999999).random().toString())
+        }
+        findViewById<Button>(R.id.btnInvite).setOnClickListener {
+            var room = etRoom.text.toString().trim()
+            if (room.length < 3) {
+                room = (100000..999999).random().toString()
+                etRoom.setText(room)
+            }
+            val msg = "📞 Live Call Translator par mere saath baat karo – main ${my.name} bolunga, " +
+                "aap apni bhasha me suno!\n\nRoom code: $room\n\n" +
+                "App: https://github.com/vaidyaashwanikumar666-cyber/LiveCallTranslator/actions"
+            startActivity(Intent.createChooser(
+                Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, msg),
+                "Invite bhejo"
+            ))
         }
         btnMute.setOnClickListener {
             muted = !muted
@@ -68,6 +86,7 @@ class CallActivity : AppCompatActivity(), Listener.Callback, CallClient.Events {
     override fun onJoined(peers: List<String>) {
         inCall = true
         findViewById<View>(R.id.joinBox).visibility = View.GONE
+        findViewById<View>(R.id.inviteBox).visibility = View.GONE
         btnMute.isEnabled = true
         tvStatus.text = if (peers.isEmpty()) "Room me aa gaye – dusre vyakti ka intezaar…"
         else "✅ Connected: ${peers.joinToString()}"
@@ -103,6 +122,7 @@ class CallActivity : AppCompatActivity(), Listener.Callback, CallClient.Events {
         listener.stop()
         tvStatus.text = reason
         findViewById<View>(R.id.joinBox).visibility = View.VISIBLE
+        findViewById<View>(R.id.inviteBox).visibility = View.VISIBLE
         btnMute.isEnabled = false
     }
 

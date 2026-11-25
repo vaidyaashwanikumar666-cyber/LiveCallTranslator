@@ -14,6 +14,17 @@
             android:text="Join" />
     </LinearLayout>
 
+    <LinearLayout android:id="@+id/inviteBox" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnNewCode"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp" android:text="🎲 Naya code" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnInvite"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            app:backgroundTint="#16A34A" android:text="📤 Invite bhejo" />
+    </LinearLayout>
+
     <TextView android:id="@+id/tvStatus" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:padding="8dp" android:gravity="center"
         android:textStyle="bold" android:text="Room code daal kar Join karein" />
