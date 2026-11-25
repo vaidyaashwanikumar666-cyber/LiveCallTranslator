@@ -3,6 +3,10 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:padding="16dp">
 
+    <TextView android:id="@+id/tvTitle" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:paddingBottom="8dp"
+        android:textSize="20sp" android:textStyle="bold" />
+
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:alpha="0.75"
         android:textSize="13sp"
         android:text="Normal phone call ko SPEAKER par daalein. Jab aap bolein to neela button, jab saamne wala bole to hara button dabaayein. Translation phone ki awaaz me bola jayega jo call me dusri taraf sunai dega." />

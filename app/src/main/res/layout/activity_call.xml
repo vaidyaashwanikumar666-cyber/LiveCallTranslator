@@ -4,6 +4,10 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:padding="16dp">
 
+    <TextView android:id="@+id/tvTitle" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:paddingBottom="8dp"
+        android:textSize="20sp" android:textStyle="bold" />
+
     <LinearLayout android:id="@+id/joinBox" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal">
         <EditText android:id="@+id/etRoom" android:layout_width="0dp" android:layout_weight="1"

@@ -10,30 +10,53 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      VERSION_CODE: ${{ github.run_number }}
+      VERSION_NAME: 1.0.${{ github.run_number }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-      - name: Build debug APK
+
+      - name: Build debug APK (direct install)
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           chmod +x gradlew
-          ./gradlew --no-daemon assembleDebug
+          ./gradlew --no-daemon assembleDebug -PversionCode=$VERSION_CODE -PversionName=$VERSION_NAME
           cp app/build/outputs/apk/debug/app-debug.apk LiveCallTranslator.apk
+
+      - name: Build signed Play Store bundle (AAB)
+        if: env.KEYSTORE_BASE64 != ''
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          export KEYSTORE_FILE="$RUNNER_TEMP/upload.jks"
+          ./gradlew --no-daemon bundleRelease -PversionCode=$VERSION_CODE -PversionName=$VERSION_NAME
+          cp app/build/outputs/bundle/release/app-release.aab LiveCallTranslator-playstore.aab
+          rm -f "$RUNNER_TEMP/upload.jks"
+
       - uses: actions/upload-artifact@v4
         with:
-          name: LiveCallTranslator-apk
-          path: LiveCallTranslator.apk
+          name: LiveCallTranslator
+          path: |
+            LiveCallTranslator.apk
+            LiveCallTranslator-playstore.aab
+          if-no-files-found: warn
+
       # Direct download (bina ZIP): .../releases/latest/download/LiveCallTranslator.apk
       - name: Publish release
         if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG="v1.0.${{ github.run_number }}"
-          gh release create "$TAG" LiveCallTranslator.apk \
-            --title "Live Call Translator $TAG" \
-            --notes "Phone me seedha install karein: LiveCallTranslator.apk" \
+          FILES="LiveCallTranslator.apk"
+          [ -f LiveCallTranslator-playstore.aab ] && FILES="$FILES LiveCallTranslator-playstore.aab"
+          gh release create "v$VERSION_NAME" $FILES \
+            --title "Live Call Translator v$VERSION_NAME" \
+            --notes "📲 Phone: LiveCallTranslator.apk install karein. 🏪 Play Store: LiveCallTranslator-playstore.aab Play Console me upload karein." \
             --latest

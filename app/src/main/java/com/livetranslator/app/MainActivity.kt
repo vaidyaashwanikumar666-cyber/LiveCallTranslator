@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        applySystemBarPadding()
 
         spMy = findViewById(R.id.spMy)
         spOther = findViewById(R.id.spOther)

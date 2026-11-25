@@ -35,10 +35,11 @@ class CallActivity : AppCompatActivity(), Listener.Callback, CallClient.Events {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call)
+        applySystemBarPadding()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         my = Prefs.myLang(this)
-        title = "Translated Call – ${my.name}"
+        findViewById<TextView>(R.id.tvTitle).text = "Translated Call – ${my.name}"
         tvStatus = findViewById(R.id.tvStatus)
         tvLive = findViewById(R.id.tvLive)
         btnMute = findViewById(R.id.btnMute)

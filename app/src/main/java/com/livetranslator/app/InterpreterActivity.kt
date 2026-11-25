@@ -27,11 +27,12 @@ class InterpreterActivity : AppCompatActivity(), Listener.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_interpreter)
+        applySystemBarPadding()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         my = Prefs.myLang(this)
         other = Prefs.otherLang(this)
-        title = "${my.name} ⇄ ${other.name}"
+        findViewById<TextView>(R.id.tvTitle).text = "${my.name} ⇄ ${other.name}"
 
         engine = TranslationEngine(this)
         speaker = Speaker(this, { speaking ->

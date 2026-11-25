@@ -7,7 +7,28 @@ const PORT = process.env.PORT || 8080;
 const MAX_PER_ROOM = 8;
 const rooms = new Map(); // room -> Set<ws>
 
+const fs = require('fs');
+const path = require('path');
+
 const server = http.createServer((req, res) => {
+  if (req.url && req.url.startsWith('/privacy')) {
+    let md = 'Privacy policy not found';
+    for (const f of [path.join(__dirname, '..', 'PRIVACY.md'), path.join(__dirname, 'PRIVACY.md')]) {
+      try { md = fs.readFileSync(f, 'utf8'); break; } catch {}
+    }
+    const esc = md.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const html = esc
+      .replace(/^# (.*)$/gm, '<h1>$1</h1>')
+      .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+      .replace(/^- (.*)$/gm, '<li>$1</li>')
+      .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+      .replace(/_(.+?)_/g, '<i>$1</i>')
+      .replace(/\n{2,}/g, '<br><br>');
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    return res.end('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>Privacy Policy – Live Call Translator</title>' +
+      '<body style="font-family:sans-serif;max-width:720px;margin:auto;padding:16px;line-height:1.5">' + html + '</body>');
+  }
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Live Call Translator relay is running');
 });
