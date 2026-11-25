@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="🌐 Live Call Translator" android:textSize="24sp" android:textStyle="bold" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" android:alpha="0.7"
+            android:text="Aap apni bhasha me boliye, saamne wala apni bhasha me sunega." />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Meri bhasha (main bolunga / sununga)" android:textStyle="bold" />
+        <Spinner android:id="@+id/spMy" android:layout_width="match_parent"
+            android:layout_height="48dp" android:layout_marginBottom="12dp" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Saamne wale ki bhasha" android:textStyle="bold" />
+        <Spinner android:id="@+id/spOther" android:layout_width="match_parent"
+            android:layout_height="48dp" android:layout_marginBottom="12dp" />
+
+        <EditText android:id="@+id/etName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Aapka naam" android:inputType="textPersonName" />
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnInterpreter"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:padding="14dp"
+            android:text="📞 Interpreter Mode\n(Normal call speaker par / aamne-saamne)" />
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnCall"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:padding="14dp" app:backgroundTint="@color/accent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:text="🔁 App-to-App Live Translated Call\n(dono ke phone me app ho)" />
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnDownload"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="⬇ Offline language pack download karein" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" android:text="⚙ Settings" android:textSize="18sp" android:textStyle="bold" />
+
+        <EditText android:id="@+id/etServer" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="textUri"
+            android:hint="Call server URL (wss://...)" />
+
+        <EditText android:id="@+id/etSarvam" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="textPassword"
+            android:hint="Sarvam AI API key (optional – sabhi 22 bhashaon ke liye)" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:alpha="0.7" android:textSize="13sp"
+            android:text="• Bina key ke offline chalega: Hindi, Marathi, Bengali, Gujarati, Tamil, Telugu, Kannada, Urdu, English.\n• Malayalam, Punjabi, Odia, Assamese aur baaki bhashaon ke liye Sarvam AI key daalein (sarvam.ai).\n• Bhasha ki awaaz na aaye to: Settings → Text-to-speech → Google → voice data install karein." />
+    </LinearLayout>
+</ScrollView>

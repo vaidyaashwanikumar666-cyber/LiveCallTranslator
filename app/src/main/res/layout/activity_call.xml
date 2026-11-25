@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp">
+
+    <LinearLayout android:id="@+id/joinBox" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <EditText android:id="@+id/etRoom" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:hint="Room code (dono same daalein)"
+            android:inputType="number" android:maxLength="10" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnJoin"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Join" />
+    </LinearLayout>
+
+    <TextView android:id="@+id/tvStatus" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="8dp" android:gravity="center"
+        android:textStyle="bold" android:text="Room code daal kar Join karein" />
+
+    <TextView android:id="@+id/tvLive" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:gravity="center" android:alpha="0.6"
+        android:textStyle="italic" />
+
+    <ScrollView android:id="@+id/scroll" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1">
+        <TextView android:id="@+id/tvTranscript" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="17sp" android:textIsSelectable="true" />
+    </ScrollView>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnMute"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="64dp"
+            android:layout_marginEnd="8dp" android:text="🎤 Mute" android:enabled="false" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnEnd"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="64dp"
+            app:backgroundTint="#DC2626" android:text="📵 End" />
+    </LinearLayout>
+</LinearLayout>
